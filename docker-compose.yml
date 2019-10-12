@@ -1,0 +1,26 @@
+version: '3.4'
+services:
+  hello:
+    build:
+      context: .
+    volumes:
+      - .:/go/src/hello
+    ports:
+      - 8080:8080
+    tty: true
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./:/etc/prometheus/
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    tty: true
+  grafana:
+    image: grafana/grafana:latest
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
+    tty: true
