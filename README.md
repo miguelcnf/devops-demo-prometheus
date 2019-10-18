@@ -1,4 +1,4 @@
-# Docker Compose demo
+# Prometheus demo
 
 #### Requirements
 
